@@ -1,0 +1,40 @@
+{{> sidemenu}}
+<div class="main__show_courses">
+    <div class="__show__courses">
+        {{#each courses}}
+        <div class="__course">
+            <div class="img__course">
+                <img src="{{this.img}}" alt="">
+            </div>
+            <div class="info__course">
+                <div  class="name__course">
+                    <h5>{{this.name}}</h5>
+                    <p id="namecourse" style="display: none;">{{this.slug}}</p>
+                </div>
+                <div class="content__course">
+                    {{this.mota}}
+                </div>
+                <div class="go_to__course">
+                    <span class="num__member"><i class="fas fa-users"></i> {{this.__v}}</span>
+                    <div class="learn btn__go_course">
+                        <a href="/courses/{{this.slug}}">Miễn phí</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+{{> botchat}}
+<script>
+    var learning = '{{data.learning}}';
+    var namecourse = document.querySelectorAll('#namecourse');
+    var learned = document.querySelectorAll('.learn a');
+    for ( var i = 0; i < learned.length; i++ ){
+        if (learning.includes(namecourse[i].innerHTML)){
+            learned[i].innerHTML = 'Học tiếp';
+            learned[i].classList.add('btn-learning');
+        }
+    }
+
+</script>
